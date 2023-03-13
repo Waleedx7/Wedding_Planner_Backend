@@ -10,7 +10,7 @@ class RegisterSerializer(serializers.ModelSerializer):
    
     class Meta:
         model = User
-        fields = ['username', 'password']
+        fields = ['username', 'password','email']
 
     def create(self, validated_data):
         password = validated_data.pop('password')
@@ -23,11 +23,13 @@ class RegisterSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(write_only=True)
     password = serializers.CharField(write_only=True)
+    email = serializers.CharField(read_only=True)
     access = serializers.CharField(read_only=True)
 
     def validate(self, data):
         username = data.get('username')
         password = data.get('password')
+        email = data.get('email')
         try:
             user = User.objects.get(username=username)
             print(user.username)
