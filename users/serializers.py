@@ -10,7 +10,7 @@ class RegisterSerializer(serializers.ModelSerializer):
    
     class Meta:
         model = User
-        fields = ['username', 'password','email']
+        fields = ['username', 'password']
 
     def create(self, validated_data):
         password = validated_data.pop('password')
@@ -29,13 +29,14 @@ class LoginSerializer(serializers.Serializer):
     def validate(self, data):
         username = data.get('username')
         password = data.get('password')
-        email = data.get('email')
+        # email = data.get('email')
         try:
             user = User.objects.get(username=username)
             print(user.username)
         except User.DoesNotExist:
             print("This user doesn't exist")
-
+        print(user)
+        print(password)
         if not user.check_password(password):
             raise serializers.ValidationError('Incorrect credentials')
         
