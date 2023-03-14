@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'wedding',
     'vendors',
     'rest_framework',
+    'datetimewidget',
 ]
 
 REST_FRAMEWORK = {
