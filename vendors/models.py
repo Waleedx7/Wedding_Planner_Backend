@@ -31,7 +31,7 @@ class Booking(models.Model):
     service = models.CharField(max_length=50)
     price = models.IntegerField()
     vendors = models.ForeignKey(Vendors, on_delete=models.CASCADE, related_name='vendors_booking')
-    booking_date = models.DateField(['Date'],default=datetime.date.today)
+    booking_date = models.DateField(blank=True, default=datetime.date.today)
     def __str__(self):
         return self.service, self.price,  self.wedding_event
     
