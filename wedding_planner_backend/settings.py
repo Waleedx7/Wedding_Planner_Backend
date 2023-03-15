@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
+    'wedding',
+    'vendors',
     'rest_framework',
+    'datetimewidget',
 ]
 
 REST_FRAMEWORK = {
