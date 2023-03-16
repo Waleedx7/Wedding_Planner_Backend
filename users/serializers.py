@@ -21,12 +21,12 @@ class LoginSerializer(serializers.Serializer):
     
     username = serializers.CharField(write_only=True)
     password = serializers.CharField(write_only=True)
-   
     access = serializers.CharField(read_only=True)
+    refresh = serializers.CharField(read_only=True)
 
-    def validate(self, data):
-        username = data.get('username')
-        password = data.get('password')
+    def validate(self, valid_data):
+        username = valid_data.get('username')
+        password = valid_data.get('password')
        
        
         try:
@@ -38,6 +38,9 @@ class LoginSerializer(serializers.Serializer):
         if not user.check_password(password):
             raise serializers.ValidationError('Incorrect credentials')
         
-        payload = RefreshToken.for_user(user)
-        data['access'] = str(payload.access_token)
-        return data
+        refresh_token = RefreshToken.for_user(user)
+        access_token = refresh_token.access_token
+        valid_data['access'] = str(access_token)
+        valid_data['refresh'] = str(refresh_token)
+        valid_data['user'] = user
+        return valid_data
