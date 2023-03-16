@@ -38,7 +38,7 @@ class Booking(models.Model):
 class Services(models.Model):
     title = models.CharField(max_length=50)
     price = models.IntegerField()
-    vendors = models.ForeignKey(Vendors, on_delete=models.CASCADE, related_name='vendors_services',default='')
+    vendors = models.ForeignKey(Vendors, on_delete=models.CASCADE, related_name='vendors_services',default='services_vendor')
     booking = models.ManyToManyField(Booking, related_name='booking_services')
     description = models.TextField()
 
