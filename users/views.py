@@ -41,8 +41,7 @@ class RegisterView(CreateAPIView):
         refresh_token = RefreshToken.for_user(user)
         valid_data = {
             'access_token': str(access_token.access_token),
-            'refresh_token': str(refresh_token),
-            'username': user.username,}
+            'refresh_token': str(refresh_token),}
         response.data = valid_data
         return response
 
