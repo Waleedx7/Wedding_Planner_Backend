@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'users',
     'wedding',
     'vendors',
+    'booking',
     'rest_framework',
 ]
 
