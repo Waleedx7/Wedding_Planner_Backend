@@ -1,5 +1,3 @@
-
-
 # Create your views here.
 from django.shortcuts import render
 from rest_framework import generics
@@ -35,6 +33,18 @@ class MyTokenRefreshView(TokenObtainPairView):
 
 class RegisterView(CreateAPIView):
     serializer_class = serializers.RegisterSerializer
+
+    def post(self,request,*args,**kwargs):
+        response = super().post(request,*args,**kwargs)
+        user = self.serializer_class.Meta.model.objects.get(username=request.data['username'])
+        access_token = MyTokenObtainPairSerializer().get_token(user)
+        refresh_token = RefreshToken.for_user(user)
+        valid_data = {
+            'access_token': str(access_token.access_token),
+            'refresh_token': str(refresh_token),
+            'username': user.username,}
+        response.data = valid_data
+        return response
 
 
 class LoginView(APIView):
