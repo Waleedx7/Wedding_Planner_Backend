@@ -1,21 +1,18 @@
-
-from django.shortcuts import render, redirect , get_object_or_404
+from django.shortcuts import render , redirect , get_object_or_404
+from ..models import Vendors
+from ..forms import VendorsForm
 from django.contrib.auth.decorators import user_passes_test
-from .forms import VendorsForm
-from .models import Vendors
 
-
-
+# Create your views here.
 
 def vendor_admin(user):
     return user.groups.filter(name='VendorAdmin').exists()
-
 
 @user_passes_test(vendor_admin)
 
 def vendor_list(request):
     vendors = Vendors.objects.all()
-    return render(request, 'vendor_list.html', {'vendors': vendors})
+    return render(request, 'vendors_list', {'vendors': vendors})
 
 
 @user_passes_test(vendor_admin)
@@ -39,7 +36,7 @@ def update_vendor(request,vendor_id):
 
 @user_passes_test(vendor_admin)
 
-def delete_vendor(request,vendor_id):
+def delete_vender(request,vendor_id):
     vendor = get_object_or_404(Vendors, id=vendor_id)
     if request.method == 'POST':
         vendor.delete()

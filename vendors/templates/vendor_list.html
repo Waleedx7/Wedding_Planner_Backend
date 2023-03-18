@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Vendors List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vendor in vendors %}
+                <tr>
+                    <td>{{ vendor.title }}</td>
+                    <td>{{ vendor.price }}</td>
+                    <td>{{ vendor.description }}</td>
+                    <td>
+                        <a href="{% url 'update_vendor' vendor.id %}">Edit</a> |
+                        <a href="{% url 'delete_vendor' vendor.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'create_vendor' %}">Add New Vendor</a>
+{% endblock %}
