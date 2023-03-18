@@ -4,9 +4,9 @@ import datetime
 
 # Create your models here.
 class Gender(models.TextChoices):
-        DEFUALT = ('D', "اختر الجنس")
-        MALE =  ('MALE', " ذكر")
-        FEMALE = ('FEMALE', " أنثى")
+        DEFUALT = ('D', "")
+        MALE =  ('Bride', " Bride")
+        FEMALE = ('Groom', " Groom")
 
 class WeddingEvent(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='wedding_event')
@@ -18,8 +18,7 @@ class WeddingEvent(models.Model):
     date =  models.DateField(['Date'],default=datetime.date.today) # Use the widget in your form template page as Jinja Tag
     budget = models.PositiveIntegerField()
 
-    def __str__(self):
-        return  self.date, self.user
+ 
     
     
 class Invitations(models.Model):
@@ -28,5 +27,4 @@ class Invitations(models.Model):
     phone = models.CharField(max_length=50)
     email = models.EmailField()
 
-    def __str__(self):
-        return self.guest, self.email, self.phone
+   

@@ -13,25 +13,20 @@ class Vendors(models.Model):
     contact = models.CharField(max_length=50)
     description = models.TextField()
 
-
-    
-
-
 class Category(models.Model):
     title = models.CharField(max_length=50)
     image = models.ImageField(upload_to='images/')
     vendors = models.ForeignKey(Vendors, on_delete=models.CASCADE, related_name='vendors_category')
 
-    def __str__(self):
-        return self.title, self.vendors
+
     
 class Booking(models.Model):
     wedding_event = models.ForeignKey(WeddingEvent, on_delete=models.CASCADE, related_name='booking')
     price = models.IntegerField()
     vendors = models.ForeignKey(Vendors, on_delete=models.CASCADE, related_name='vendors_booking')
     booking_date = models.DateField(blank=True, default=datetime.date.today)
-    def __str__(self):
-        return self.service, self.price,  self.wedding_event
+
+
     
 class Services(models.Model):
     title = models.CharField(max_length=50)
@@ -40,5 +35,3 @@ class Services(models.Model):
     booking = models.ManyToManyField(Booking, related_name='booking_services')
     description = models.TextField()
 
-    def __str__(self):
-        return self.title, self.price, self.vendors
