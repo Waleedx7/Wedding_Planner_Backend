@@ -13,8 +13,7 @@ class Vendors(models.Model):
     contact = models.CharField(max_length=50)
     description = models.TextField()
 
-    def __str__(self):
-        return self.title, self.price, self.contact
+
     
 
 
@@ -28,7 +27,6 @@ class Category(models.Model):
     
 class Booking(models.Model):
     wedding_event = models.ForeignKey(WeddingEvent, on_delete=models.CASCADE, related_name='booking')
-    service = models.CharField(max_length=50)
     price = models.IntegerField()
     vendors = models.ForeignKey(Vendors, on_delete=models.CASCADE, related_name='vendors_booking')
     booking_date = models.DateField(blank=True, default=datetime.date.today)

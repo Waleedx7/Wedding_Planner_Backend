@@ -16,7 +16,7 @@ class WeddingEvent(models.Model):
         default=Gender.DEFUALT
         )
     date =  models.DateField(['Date'],default=datetime.date.today) # Use the widget in your form template page as Jinja Tag
-    budget = models.IntegerField()
+    budget = models.PositiveIntegerField()
 
     def __str__(self):
         return  self.date, self.user
