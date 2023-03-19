@@ -9,10 +9,12 @@
         <ul>
             <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'vendor_list' %}">Vendors List</a></li>
+            <li><a href="{% url 'category_vendors' %}">Categories List</a></li>
             <li><a href="{% url 'create_vendor' %}">Add New Vendor</a></li>
+            <li><a href="{% url 'create_category' %}">Add New Category</a></li>
         </ul>
     </nav>
-    {% block content %}
-    {% endblock %}
+    <div class="container">
+        {% block content %}{% endblock %}
 </body>
 </html>

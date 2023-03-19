@@ -1,16 +1,34 @@
 
 from django.shortcuts import render, redirect , get_object_or_404
 from django.contrib.auth.decorators import user_passes_test
-from .forms import VendorsForm
-from .models import Vendors
+from django.contrib.auth import logout
+from .forms import CategoryForm, VendorsForm
+from .models import Category, Vendors
 
+
+def vendor_admin(user):
+    return user.groups.filter(name='VendorAdmin').exists()
+@user_passes_test(vendor_admin)
 
 def home(request):
     return render(request, 'home.html')
 
-def vendor_admin(user):
-    return user.groups.filter(name='VendorAdmin').exists()
+def logout_view(request):
+    return redirect('home')
 
+@user_passes_test(vendor_admin)
+
+def category_list(request):
+    categories = Category.objects.all()
+    return render(request, 'category_list.html', {'categories': categories})
+@user_passes_test(vendor_admin)
+
+def create_category(request):
+    form = CategoryForm(request.POST or None, request.FILES or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('home')
+    return render(request, 'create_category.html', {'form': form})
 
 @user_passes_test(vendor_admin)
 

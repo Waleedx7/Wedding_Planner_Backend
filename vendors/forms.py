@@ -1,6 +1,14 @@
 from django import forms 
-from .models import Vendors
+from .models import Vendors , Category
 
+
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['title', 'image', 'vendors']
+        
 
 class VendorsForm(forms.ModelForm):
 
