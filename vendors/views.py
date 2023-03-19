@@ -5,7 +5,8 @@ from .forms import VendorsForm
 from .models import Vendors
 
 
-
+def home(request):
+    return render(request, 'home.html')
 
 def vendor_admin(user):
     return user.groups.filter(name='VendorAdmin').exists()

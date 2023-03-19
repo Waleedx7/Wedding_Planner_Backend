@@ -23,12 +23,13 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', vendor_views.home, name='home'),
     path('api/token/', user_views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/register/', user_views.RegisterView.as_view(), name='register'),
     path('api/login/', user_views.LoginView.as_view(), name='login'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', include('vendors.urls')),
+    path('vendor/', include('vendors.urls')),
 ]
 
     

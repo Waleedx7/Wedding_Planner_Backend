@@ -1,24 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Vendor App</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>{% block title %}Wedding Planner{% endblock %}</title>
 </head>
 <body>
-    <h1>Vendor Management</h1>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'vendor_list' %}">Vendors List</a></li>
+            <li><a href="{% url 'create_vendor' %}">Add New Vendor</a></li>
+        </ul>
+    </nav>
     {% block content %}
     {% endblock %}
 </body>
