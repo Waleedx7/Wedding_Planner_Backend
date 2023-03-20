@@ -10,7 +10,7 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <body>
             {% for vendor in vendors %}
                 <tr>
                     <td>{{ vendor.title }}</td>
@@ -22,7 +22,7 @@
                     </td>
                 </tr>
             {% endfor %}
-        </tbody>
+        </body>
     </table>
     <a href="{% url 'create_vendor' %}">Add New Vendor</a>
 {% endblock %}

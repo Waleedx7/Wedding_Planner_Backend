@@ -11,13 +11,19 @@ class Vendors(models.Model):
     image = models.ImageField(upload_to='images/')
     contact = models.CharField(max_length=50)
     description = models.TextField()
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='vendors_category')
+
+    def __str__(self):
+        return self.title 
+
 
 class Category(models.Model):
     title = models.CharField(max_length=50)
     image = models.ImageField(upload_to='images/')
     # vendors = models.ForeignKey(Vendors, on_delete=models.CASCADE, related_name='vendors_category')
 
-
+    def __str__(self):
+        return self.title
     
 class Booking(models.Model):
     wedding_event = models.ForeignKey(WeddingEvent, on_delete=models.CASCADE, related_name='booking')
