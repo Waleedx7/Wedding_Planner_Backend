@@ -9,14 +9,13 @@ class Vendors(models.Model):
     vendors_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='vedors_user',default='')
     title = models.CharField(max_length=50)
     image = models.ImageField(upload_to='images/')
-    price = models.IntegerField()
     contact = models.CharField(max_length=50)
     description = models.TextField()
 
 class Category(models.Model):
     title = models.CharField(max_length=50)
     image = models.ImageField(upload_to='images/')
-    vendors = models.ForeignKey(Vendors, on_delete=models.CASCADE, related_name='vendors_category')
+    # vendors = models.ForeignKey(Vendors, on_delete=models.CASCADE, related_name='vendors_category')
 
 
     
