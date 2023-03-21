@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect , get_object_or_404
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import logout 
-from .forms import BookingForm, CategoryForm, VendorsForm
+from .forms import BookingForm, CategoryForm, ServicesForm, VendorsForm
 from .models import Category, Vendors
 from .serializers import CategorySerializer, VendorsSerializer
 from rest_framework.generics import ListAPIView
@@ -31,6 +31,14 @@ def create_category(request):
         form.save()
         return redirect('vendors_list')
     return render(request, 'create_category.html', {'form': form})
+
+
+def create_services(request):
+    form = ServicesForm(request.POST or None, request.FILES or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('home')
+    return render(request, 'create_services.html', {'form': form})
 
 @user_passes_test(vendor_admin)
 

@@ -6,6 +6,7 @@ urlpatterns = [
     path('list/', views.vendor_list, name='vendor_list'),
     path('category/', views.category_list, name='category_vendors'),
     path('create/', views.create_vendor, name='create_vendor'),
+    path('create/services/', views.create_services, name='create_services'),
     path('create/booking/', views.create_booking, name='create_booking'),
     path('create/category/', views.create_category, name='create_category'),
     path('update/<int:vendor_id>/', views.update_vendor, name='update_vendor'),
