@@ -35,3 +35,4 @@ class Booking(models.Model):
     wedding_event = models.ForeignKey(WeddingEvent, on_delete=models.CASCADE, related_name='bookings')
     service = models.ForeignKey(Services, on_delete=models.CASCADE, related_name='vendors_booking')
     booking_date = models.DateField(blank=True, default=datetime.date.today)
+    # 

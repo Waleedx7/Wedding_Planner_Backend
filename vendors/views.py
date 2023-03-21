@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect , get_object_or_404
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import logout 
 from .forms import BookingForm, CategoryForm, ServicesForm, VendorsForm
-from .models import Category, Vendors
-from .serializers import CategorySerializer, VendorsSerializer
+from .models import Booking, Category, Services, Vendors
+from .serializers import CategorySerializer, CreateBookingSerializer, ServicesSerializer, VendorsSerializer
 from rest_framework.generics import ListAPIView
 
 
@@ -98,3 +98,11 @@ class VendorsView(ListAPIView):
 class CategoryView(ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+class ServicesView(ListAPIView):
+    queryset = Services.objects.all()
+    serializer_class = ServicesSerializer
+
+class CreateBookingView(ListAPIView):
+    queryset = Booking.objects.all()
+    serializer_class = CreateBookingSerializer

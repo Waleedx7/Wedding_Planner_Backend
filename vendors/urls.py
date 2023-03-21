@@ -2,6 +2,8 @@ from django.urls import path
 from . import views
 from .views import VendorsView , CategoryView
 
+
+# website urls
 urlpatterns = [
     path('list/', views.vendor_list, name='vendor_list'),
     path('category/', views.category_list, name='category_vendors'),

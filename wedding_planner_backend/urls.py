@@ -22,7 +22,7 @@ from vendors import views as vendor_views
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
-
+# flutter endpoints
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', vendor_views.home, name='home'),
@@ -32,6 +32,8 @@ urlpatterns = [
     path('api/login/', user_views.LoginView.as_view(), name='login'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('vendor/', include('vendors.urls')),
+    path('vendor/services', include('vendors.urls')),
+    path('api/vendor/service/book', vendor_views.CreateBookingView.as_view(), name='book-service'),
 ]
 
     
