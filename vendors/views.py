@@ -1,7 +1,7 @@
 
 from django.shortcuts import render, redirect , get_object_or_404
 from django.contrib.auth.decorators import user_passes_test
-from django.contrib.auth import logout
+from django.contrib.auth import logout 
 from .forms import BookingForm, CategoryForm, VendorsForm
 from .models import Category, Vendors
 from .serializers import CategorySerializer, VendorsSerializer
@@ -44,7 +44,10 @@ def vendor_list(request):
 def create_vendor(request):
     form = VendorsForm(request.POST or None, request.FILES or None)
     if request.method == 'POST' and form.is_valid():
-        form.save()
+
+        vendor = form.save(commit=False)
+        vendor.vendors_user = request.user
+        vendor.save()
         return redirect('home')
     return render(request, 'create_vendor.html', {'form': form})
 

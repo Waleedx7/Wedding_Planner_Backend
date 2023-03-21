@@ -14,10 +14,10 @@ class VendorsForm(forms.ModelForm):
 
     class Meta:
         model = Vendors
-        fields = ('vendors_user','title','image','contact','description','category')
+        fields = ('title','image','contact','description','category')
 
 
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
-        fields = ('wedding_event','price','vendors','booking_date')
+        fields = ('wedding_event','service','booking_date')
