@@ -34,7 +34,8 @@ def create_category(request):
 
 
 def create_services(request):
-    form = ServicesForm(request.POST or None, request.FILES or None)
+    form = ServicesForm(request.POST or None, request.FILES or None) # permisions 
+    # add permisions 
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('home')
@@ -98,6 +99,9 @@ class VendorsView(ListAPIView):
 class CategoryView(ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+
+# ------- check this -----------
 
 class ServicesView(ListAPIView):
     queryset = Services.objects.all()

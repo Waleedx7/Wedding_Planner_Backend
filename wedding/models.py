@@ -17,9 +17,7 @@ class WeddingEvent(models.Model):
         )
     date =  models.DateField(['Date'],default=datetime.date.today) # Use the widget in your form template page as Jinja Tag
     budget = models.PositiveIntegerField()
-
- 
-    
+  
     
 class Invitations(models.Model):
     wedding_event = models.ForeignKey(WeddingEvent, on_delete=models.CASCADE, related_name='invitations')
