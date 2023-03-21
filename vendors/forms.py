@@ -1,5 +1,5 @@
 from django import forms 
-from .models import Vendors , Category
+from .models import Booking, Vendors , Category
 
 
 
@@ -14,4 +14,10 @@ class VendorsForm(forms.ModelForm):
 
     class Meta:
         model = Vendors
-        fields = ('vendors_user','title','image','contact','description')
+        fields = ('title','image','contact','description','category')
+
+
+class BookingForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = ('wedding_event','service','booking_date')
