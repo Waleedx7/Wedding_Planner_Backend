@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from django.urls import path , include
 from users import views as user_views
 from vendors import views as vendor_views
+from wedding import views as wedding_view
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
@@ -32,8 +33,10 @@ urlpatterns = [
     path('api/login/', user_views.LoginView.as_view(), name='login'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('vendor/', include('vendors.urls')),
-    path('vendor/services', include('vendors.urls')),
-    path('api/vendor/service/book', vendor_views.CreateBookingView.as_view(), name='book-service'),
+    path('api/vendor/services/<int:id>', vendor_views.ServicesView.as_view(), name = 'services'),#not sure
+    path('api/vendor/service/book/<int:id>', vendor_views.CreateBookingView.as_view(), name='book-service'), #not sure
+    path('api/wedding_event/<int:id>', wedding_view.WeddingEventView.as_view(), name='wedding-event'), # not sure 
+
 ]
 
     

@@ -26,13 +26,15 @@ class Category(models.Model):
         return self.title
         
 class Services(models.Model):
+
     title = models.CharField(max_length=50)
     price = models.IntegerField()
     vendors = models.ForeignKey(Vendors, on_delete=models.CASCADE, related_name='vendors_services',default='services_vendor')
+    category = models.ManyToManyField('Category', related_name='category_serves') # work on this 
     description = models.TextField()
 
 class Booking(models.Model):
     wedding_event = models.ForeignKey(WeddingEvent, on_delete=models.CASCADE, related_name='bookings')
     service = models.ForeignKey(Services, on_delete=models.CASCADE, related_name='vendors_booking')
     booking_date = models.DateField(blank=True, default=datetime.date.today)
-    # 
+    

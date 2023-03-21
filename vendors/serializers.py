@@ -12,6 +12,8 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ['title', 'image']
 
+# ------- check this -----------
+
 class ServicesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Services
