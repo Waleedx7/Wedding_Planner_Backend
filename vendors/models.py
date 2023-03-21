@@ -6,7 +6,7 @@ import datetime
 
 # Create your models here.
 class Vendors(models.Model):
-    vendors_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='vedors_user',default='')
+    vendors_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='vedors_user')
     title = models.CharField(max_length=50)
     image = models.ImageField(upload_to='images/')
     contact = models.CharField(max_length=50)
@@ -30,7 +30,7 @@ class Booking(models.Model):
 class Services(models.Model):
     title = models.CharField(max_length=50)
     price = models.IntegerField()
-    vendors = models.ForeignKey(Vendors, on_delete=models.CASCADE, related_name='vendors_services',default='services_vendor')
+    vendors = models.ForeignKey(Vendors, on_delete=models.CASCADE, related_name='vendors_services')
     booking = models.ManyToManyField(Booking, related_name='booking_services')
     description = models.TextField()
 
