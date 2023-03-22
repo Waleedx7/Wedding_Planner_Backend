@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from wedding.models import WeddingEvent
 from wedding.serializers import WeddingEventSerializer
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListCreateAPIView
 from django import forms
 from .models import WeddingEvent
 
@@ -10,19 +10,10 @@ from .models import WeddingEvent
 
 
 # ------- check this -----------
-class WeddingEventView(ListAPIView):
+class WeddingEventView(ListCreateAPIView):
     queryset = WeddingEvent.objects.all()
     serializer_class = WeddingEventSerializer
 
-
-
-
-
-
-class WeddingEvent(forms.ModelForm):
-    class Meta:
-        model = WeddingEvent
-        fields = ["user", "gender", "date","budget"]
 
 
 # Invitations missing
