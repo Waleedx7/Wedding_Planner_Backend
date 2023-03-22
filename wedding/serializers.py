@@ -7,6 +7,7 @@ class WeddingEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = WeddingEvent
         fields = ['user', 'gender','date','budget']
+        
 
 
 # Invitations missing
