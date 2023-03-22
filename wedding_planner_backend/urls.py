@@ -35,7 +35,7 @@ urlpatterns = [
     path('vendor/', include('vendors.urls')),
     path('api/vendor/services/', vendor_views.ServicesView.as_view(), name = 'services'),#not sure
     path('api/vendor/service/booking/', vendor_views.BookingListView.as_view(), name='book'), #not sure
-    path('api/vendor/service/booking/create/, vendor_views.CreateBookingListView.as_view(), name='book-service'), #not sure
+    path('api/vendor/service/booking/create/<int:id>', vendor_views.CreateBookingListView.as_view(), name='book-service'), #not sure
     path('api/wedding_event/', wedding_view.WeddingEventView.as_view(), name='wedding-event'), # not sure 
 
 ]
