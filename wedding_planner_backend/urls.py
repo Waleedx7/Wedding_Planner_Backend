@@ -33,9 +33,10 @@ urlpatterns = [
     path('api/login/', user_views.LoginView.as_view(), name='login'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('vendor/', include('vendors.urls')),
-    path('api/vendor/services/<int:id>', vendor_views.ServicesView.as_view(), name = 'services'),#not sure
-    path('api/vendor/service/book/<int:id>', vendor_views.CreateBookingView.as_view(), name='book-service'), #not sure
-    path('api/wedding_event/<int:id>', wedding_view.WeddingEventView.as_view(), name='wedding-event'), # not sure 
+    path('api/vendor/services/', vendor_views.ServicesView.as_view(), name = 'services'),#not sure
+    path('api/vendor/service/booking/', vendor_views.BookingListView.as_view(), name='book'), #not sure
+    path('api/vendor/service/booking/create/, vendor_views.CreateBookingListView.as_view(), name='book-service'), #not sure
+    path('api/wedding_event/', wedding_view.WeddingEventView.as_view(), name='wedding-event'), # not sure 
 
 ]
 

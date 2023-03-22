@@ -5,7 +5,7 @@ from django.contrib.auth import logout
 from .forms import BookingForm, CategoryForm, ServicesForm, VendorsForm
 from .models import Booking, Category, Services, Vendors
 from .serializers import CategorySerializer, CreateBookingSerializer, ServicesSerializer, VendorsSerializer
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView , CreateAPIView
 
 
 def vendor_admin(user):
@@ -37,6 +37,9 @@ def create_services(request):
     form = ServicesForm(request.POST or None, request.FILES or None) # permisions 
     # add permisions 
     if request.method == 'POST' and form.is_valid():
+        service = form.save(commit=False)
+        service.vendors = request.user.vendor
+        service.save()
         form.save()
         return redirect('home')
     return render(request, 'create_services.html', {'form': form})
@@ -57,6 +60,7 @@ def create_vendor(request):
         vendor = form.save(commit=False)
         vendor.vendors_user = request.user
         vendor.save()
+        form.save_m2m()
         return redirect('home')
     return render(request, 'create_vendor.html', {'form': form})
 
@@ -107,6 +111,10 @@ class ServicesView(ListAPIView):
     queryset = Services.objects.all()
     serializer_class = ServicesSerializer
 
-class CreateBookingView(ListAPIView):
+class BookingListView(ListAPIView):
+    queryset = Booking.objects.all()
+    serializer_class = CreateBookingSerializer
+
+class CreateBookingListView(CreateAPIView):
     queryset = Booking.objects.all()
     serializer_class = CreateBookingSerializer

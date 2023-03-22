@@ -6,7 +6,7 @@ import datetime
 
 # Create your models here.
 class Vendors(models.Model):
-    vendors_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='vedors_user',default='')
+    vendors_user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="vendor")
     title = models.CharField(max_length=50)
     image = models.ImageField(upload_to='images/')
     contact = models.CharField(max_length=50)

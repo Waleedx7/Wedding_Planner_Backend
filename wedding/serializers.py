@@ -9,4 +9,4 @@ class WeddingEventSerializer(serializers.ModelSerializer):
         fields = ['user', 'gender','date','budget']
 
 
-# Invitations missing
+# Invitations

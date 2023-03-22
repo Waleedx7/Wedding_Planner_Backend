@@ -20,7 +20,7 @@ class VendorsForm(forms.ModelForm):
 class ServicesForm(forms.ModelForm):
     class Meta:
         model = Services
-        fields = ('title','price','vendors','description','category')
+        fields = ('title','price','description','category')
 
 
 class BookingForm(forms.ModelForm):
