@@ -2,19 +2,36 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-md-6">
-      <h2>Welcome to Wedding Planner!</h2>
-      <p class="lead">Here you can find the best vendors for your wedding.</p>
+<body style = "background-color :rgb(105, 91, 110)">
+  
+      
+  <div 
+  style=" height: 50vh; display: flex; justify-content: center; flex-direction: column;display: inline; margin-bottom: 10ch ;margin-left: 30%;"
+  >
+    <div style="font-family:'Courier New', Courier, monospace; margin-top: 30ch; color:bisque;">
+      <h1>DEFOOFE  Wedding Planner Company </h1>
+      
+      <p class="lead">where you can find and create your dream with us</p>
+    </div>
+    {% if request.user.is_authenticated %}
       <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
-        <button type="submit" class="btn btn-primary">Sign Out</button>
+        <button type="submit" class="btn btn-light btn-rounded" style=" margin-top: 2ch; display: inline;" >Sign Out</button>
       </form>
     </div>
     <div class="col-md-6">
-      <img src="https://cdn.logojoy.com/wp-content/uploads/2018/05/30170650/1203-768x591.png" class="img-fluid rounded" alt="Wedding Planner">
+      {% else %}
+      <div>
+        <a href="{% url 'create_vendor' %}">
+          <button type="submit" class="btn btn-light btn-rounded"
+          style="margin-right: 20%; display: inline;"
+          > Join us!</button>
+        </a>
     </div>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
+
+
+

@@ -1,28 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Vendors List</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Price</th>
-                <th>Contact</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <body>
-            {% for vendor in vendors %}
+    <div class="container">
+        <h2> Vender Profile </h2>
+        <table class="table">
+            <thead class="thead-dark">
                 <tr>
-                    <td>{{ vendor.title }}</td>
-                    <td>{{ vendor.price }}</td>
-                    <td>{{ vendor.contact }}</td>
-                    <td>
-                        <a href="{% url 'update_vendor' vendor.id %}">Edit</a> |
-                        <a href="{% url 'delete_vendor' vendor.id %}">Delete</a>
-                    </td>
+                    <th>Vender name</th>
+                    
+                    <th>Contact</th>
+                    <th>Actions</th>
                 </tr>
-            {% endfor %}
-        </body>
-    </table>
-    <a href="{% url 'create_vendor' %}">Add New Vendor</a>
+            </thead>
+            <tbody>
+                {% for vendor in vendors %}
+                    <tr>
+                        <td>{{ vendor.title }}</td>
+                        
+                        <td>{{ vendor.contact }}</td>
+                        <td>
+                            <a href="{% url 'update_vendor' vendor.id %}" class="btn btn-primary btn-sm">Edit My Vendor</a>
+                            <a href="{% url 'delete_vendor' vendor.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
