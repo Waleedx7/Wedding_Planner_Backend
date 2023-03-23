@@ -10,7 +10,7 @@ from rest_framework.generics import ListAPIView , CreateAPIView
 
 def vendor_admin(user):
     return user.groups.filter(name='VendorAdmin').exists()
-@user_passes_test(vendor_admin)
+
 
 def home(request):
     return render(request, 'home.html')
@@ -32,7 +32,7 @@ def create_category(request):
         return redirect('vendors_list')
     return render(request, 'create_category.html', {'form': form})
 
-
+@user_passes_test(vendor_admin)
 def create_services(request):
     form = ServicesForm(request.POST or None, request.FILES or None) # permisions 
     # add permisions 
@@ -51,7 +51,7 @@ def vendor_list(request):
     return render(request, 'vendor_list.html', {'vendors': vendors})
 
 
-@user_passes_test(vendor_admin)
+# @user_passes_test(vendor_admin)
 
 def create_vendor(request):
     form = VendorsForm(request.POST or None, request.FILES or None)
